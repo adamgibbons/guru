@@ -2,7 +2,7 @@
   "name": "spaced-repetition-learning",
   "version": "0.0.1",
   "description": "Implements SuperMemo-2, a spaced repetition algorithm that optimizes learning based on assigning difficulty levels to paried associates.",
-  "main": "card.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
