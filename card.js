@@ -27,25 +27,33 @@ Card.prototype.getResponse = function() {
 };
 
 Card.prototype.setEasinessFactor = function(grade) {
+  var easinessFactor;
+
   if (this.iteration > 1) {
-    this.easinessFactor = this.easinessFactor + (0.1 - (5 - grade) * (0.08) + (5 - grade) * 0.02);
+    easinessFactor = this.easinessFactor + (0.1 - (5 - grade) * (0.08) + (5 - grade) * 0.02);
   } else {
-    this.easinessFactor = 2.5;
+    easinessFactor = 2.5;
   }
+
+  if (easinessFactor < 1.3) {
+    easinessFactor = 1.3;
+  }
+
+  this.easinessFactor = easinessFactor;
 };
 
 Card.prototype.getEasinessFactor = function() {
   return this.easinessFactor;
 };
 
+// After second iteration:
+// I(n) = I(n-1) * easinessFactor
 Card.prototype.setNextRepetitionInterval = function() {
   if (this.iteration === 1) {
     this.nextRepetitionInterval = 1;
   } else if (this.iteration === 2) {
     this.nextRepetitionInterval = 6;
   } else {
-    // Make sure easinessFactor has been updated
-    // I(n) = I(n-1)(easinessFactor)
     this.nextRepetitionInterval = this.getNextRepetitionInterval() * this.getEasinessFactor();
   }
 };
@@ -53,3 +61,27 @@ Card.prototype.setNextRepetitionInterval = function() {
 Card.prototype.getNextRepetitionInterval = function() {
   return this.nextRepetitionInterval;
 };
+
+Card.prototype.bumpIteration = function() {
+  this.iteration++;
+};
+
+Card.prototype.iterate = function(grade) {
+  this.setEasinessFactor(grade);
+  this.setNextRepetitionInterval();
+  this.bumpIteration();
+};
+
+
+// If nextRepetitionInterval is a fraction, round it up to the nearest integer.
+//
+// If the quality response was lower than 3 then start repetitions for the item
+// from the beginning without changing the E-Factor (i.e. use intervals I(1),
+// I(2) etc. as if the item was memorized anew).
+//
+// After each repetition session of a given day repeat again all items that
+// scored below four in the quality assessment. Continue the repetitions until
+// all of these items score at least four.
+
+
+
