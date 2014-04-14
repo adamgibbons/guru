@@ -1,0 +1,25 @@
+{
+  "name": "spaced-repetition-learning",
+  "version": "0.0.1",
+  "description": "Implements SuperMemo-2, a spaced repetition algorithm that optimizes learning based on assigning difficulty levels to paried associates.",
+  "main": "card.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/adamgibbons/spaced-repetition-learning.git"
+  },
+  "keywords": [
+    "spaced repetition",
+    "spaced repetition learning",
+    "spaced repetition algorithm",
+    "supermemo"
+  ],
+  "author": "Adam Gibbons",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamgibbons/spaced-repetition-learning/issues"
+  },
+  "homepage": "https://github.com/adamgibbons/spaced-repetition-learning"
+}
