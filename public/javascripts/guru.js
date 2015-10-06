@@ -5,8 +5,7 @@ angular
     'ngResource'
   ])
 
-  .config(
-            ['$routeProvider', '$httpProvider',
+  .config(  ['$routeProvider', '$httpProvider',
     function( $routeProvider,   $httpProvider ) {
 
     $httpProvider.defaults.withCredentials = true;
@@ -25,10 +24,13 @@ angular
 
   .controller('MainController', ['$scope', 'CardsService', function ($scope, CardsService) {
     $scope.viewState = {
-      complete: false
+      landing: true,
+      training: false,
+      reviewing: false
     };
     $scope.cardIdx = 0;
     $scope.cards = [];
+
     CardsService.list().then(function(res) {
       $scope.cards = res;
     });
@@ -37,9 +39,21 @@ angular
       console.log('create card clicked');
     };
 
+    $scope.begin = function() {
+      $scope.viewState = {
+        landing: false,
+        training: true,
+        reviewing: false
+      };      
+    }
+
     $scope.$watch('cardIdx', function (val) {
       if ($scope.cardIdx >= $scope.cards.length) {
-        $scope.viewState.complete = true;
+        $scope.viewState = {
+          landing: false,
+          training: false,
+          reviewing: true
+        };
       }
     })
 
@@ -62,7 +76,6 @@ angular
 
         function nextCard() {
           $scope.cardIdx++;
-          // $scope.card = cardAtIndex($scope.cardIdx);
           $scope.viewState.obverse = true;
         }
 

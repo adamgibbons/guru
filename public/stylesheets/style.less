@@ -17,6 +17,10 @@ button {
   background-color: #aaa;
   display: block;
   width: 100%;
+  cursor: pointer;
+  &:hover {
+    background-color: lighten(#aaa, 10%);
+  }
 }
 
 #add-card {
@@ -33,8 +37,6 @@ button {
   flex-flow: column nowrap;
   height: 100vh;
   max-width: 20em;
-  // min-width: 20em;
-  // max-width: 25em;
 }
 
 .label {
