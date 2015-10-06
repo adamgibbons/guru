@@ -1,0 +1,15 @@
+<div>
+  <button id="add-card" ng-click="createCard()">Add card</button>
+
+  <div class="panel" ng-hide="viewState.complete">
+    <div class="card-counter">
+      <span class="label">{{cardIdx + 1}} of {{cards.length}}</span>
+    </div>
+
+    <guru-card card="cards[cardIdx]" card-idx="cardIdx"></guru-card>
+  </div>
+
+  <div class="panel" ng-show="viewState.complete">
+    <p>You're done!</p>
+  </div>
+</div>
