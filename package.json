@@ -8,6 +8,7 @@
   "dependencies": {
     "pg": "^4.4.3",
     "pg-hstore": "^2.3.2",
+    "restify": "^4.0.3",
     "sequelize": "^3.17.3"
   }
 }
