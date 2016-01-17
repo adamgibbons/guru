@@ -1,12 +1,23 @@
+var fs = require('fs');
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize('database', 'username', 'password', {
+var options = {
+  dialect: 'postgres',
   host: 'localhost',
-  dialect: 'mysql',
+  port: 5432
+};
 
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
-  }
-});
+function connect(error, success) {
+  fs.readFile('./dev.env.json', function (err, config) {
+    if (err) { return error(err); }
+    else {
+      var conf = config.toString();
+      var db = new Sequelize(conf.database, conf.user, conf.password, options);
+
+      return success(db);
+    }
+  });
+}
+
+
+module.exports = connect;

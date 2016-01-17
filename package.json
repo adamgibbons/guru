@@ -6,6 +6,8 @@
     "guru": "index.js"
   },
   "dependencies": {
+    "pg": "^4.4.3",
+    "pg-hstore": "^2.3.2",
     "sequelize": "^3.17.3"
   }
 }
