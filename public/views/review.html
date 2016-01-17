@@ -1,0 +1,24 @@
+<div class="counter">{{currentCardIdx + 1}}/{{cards.length}}</div>
+
+<div ng-show="viewState.front">
+  <p>
+    {{cards[currentCardIdx].question}}
+  </p>
+
+  <div class="menu front-card-menu" ng-show="viewState.front">
+    <button ng-show="viewState.front" ng-click="flipCard()">Flip Card</button>
+  </div>
+</div>
+
+
+<div ng-show="viewState.back">
+  <p>
+    {{cards[currentCardIdx].answer}}
+  </p>
+  <div class="menu back-card-menu" ng-show="viewState.back">
+  <button ng-click="rateDifficulty(1)">1 (easy)</button>
+  <button ng-click="rateDifficulty(2)">2</button>
+  <button ng-click="rateDifficulty(3)">3</button>
+  <button ng-click="rateDifficulty(4)">4</button>
+  <button ng-click="rateDifficulty(5)">5 (difficult)</button>
+</div>

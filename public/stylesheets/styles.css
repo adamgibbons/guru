@@ -1,12 +1,56 @@
 body {
   margin: 0;
-  padding: 0;
-  font: 60px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #333;
+  padding: 2em 0 0;
+  font-family: Helvetica, sans-serif;
+  font-weight: 100;
+  font-size: 24px;
+  background-color: #ddd;
 }
 
 a {
   color: #00B7FF;
+}
+
+.counter {
+  text-align: left;
+  font-size: .66em;
+  margin-left: 1.66em;
+  letter-spacing: .2em;
+}
+
+.app {
+  width: 30em;
+  margin: auto;
+  background-color: #eee;
+  padding: 1em 0;
+  border-radius: 5px;
+  height: 20em;
+  position: relative;
+  text-align: center;
+}
+
+.menu {
+  position: absolute;
+  margin: auto;
+  display: block;
+  bottom: 1em;
+  width: 90%;
+  left: 50%;
+  margin-left: -45%;
+}
+
+.main-menu button {
+  display: inline-block;
+  float: left;
+  width: 49%;
+}
+
+.main-menu button:last-child {
+  margin-left: 2%;
+}
+
+.back-card-menu button {
+  margin-top: .33em;
 }
 
 button {
