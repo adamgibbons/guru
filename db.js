@@ -1,5 +1,5 @@
-var fs = require('fs');
 var Sequelize = require('sequelize');
+var config = require('./config');
 
 var options = {
   dialect: 'postgres',
@@ -7,17 +7,8 @@ var options = {
   port: 5432
 };
 
-function connect(error, success) {
-  fs.readFile('./dev.env.json', function (err, config) {
-    if (err) { return error(err); }
-    else {
-      var conf = config.toString();
-      var db = new Sequelize(conf.database, conf.user, conf.password, options);
+var sequelize = new Sequelize(config.database, config.user, config.password, options);
 
-      return success(db);
-    }
-  });
-}
+(require('./models/deck')(sequelize, options));
 
-
-module.exports = connect;
+module.exports = sequelize;
