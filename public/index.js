@@ -32,101 +32,6 @@ angular
     $http.defaults.withCredentials = true;
   }])
 
-  .controller('HomeController', ['$scope', '$location', function ($scope, $location) {
-    $scope.viewState = {
-
-    };
-
-    $scope.review = function() {
-      $location.path('/review');
-    };
-
-    $scope.manageCards = function() {};
-
-  }])
-
-  .controller('ReviewController', ['$scope', 'CardsService', '$location', function ($scope, CardsService, $location) {
-    $scope.cards = [], $scope.currentCardIdx = 0;
-
-    $scope.viewState = {
-      front: true,
-      back: false
-    };
-
-    function toggleViewState() {
-      $scope.viewState = {
-        front: !$scope.viewState.front,
-        back: !$scope.viewState.back
-      };
-    }
-
-    function bumpCurrentCardIdx() {
-      if ($scope.currentCardIdx + 1 === $scope.cards.length) {
-        $location.path('/complete');
-      } else {
-        $scope.currentCardIdx += 1;
-      }
-    }
-
-    function showNextCard() {
-      toggleViewState();
-      bumpCurrentCardIdx();
-    }
-
-    CardsService.list().then(function(cards) {
-      $scope.cards = cards;
-    });
-
-    $scope.flipCard = function() {
-      toggleViewState();
-    };
-
-    $scope.rateDifficulty = function(rating) {
-      console.log(rating);
-      // do something magical
-
-      showNextCard();
-    };
-
-  }])
-
-  .controller('CompletionController', [function() {
-
-  }])
-
-  // .directive('guruCard', ['CardsService', function (CardsService) {
-  //   return {
-  //     replace: true,
-  //     templateUrl: "views/guru-card.html",
-  //     scope: {
-  //       card: '=',
-  //       cardIdx: '='
-  //     },
-  //     link: function($scope, el, attrs) {
-  //       function init() {
-  //         $scope.viewState = {
-  //           obverse: true
-  //         };
-  //       }
-
-  //       function nextCard() {
-  //         $scope.cardIdx++;
-  //         $scope.viewState.obverse = true;
-  //       }
-
-  //       $scope.flipCard = function() {
-  //         $scope.viewState.obverse = !$scope.viewState.obverse;
-  //       };
-
-  //       $scope.gradeCard = function(grade) {
-  //         nextCard();
-  //       };
-
-  //       init();
-  //     }
-  //   };
-  // }])
-
   .factory('CardsService', ['$q', 'CardsData', function ($q, CardsData) {
     function list() {
       var data = CardsData;
@@ -140,7 +45,8 @@ angular
     };
   }])
 
-  .factory('CardsData', function () {
+  .factory('CardsData', ['$resource', function ($resource) {
+
     return [
       {
         id: 1,
@@ -164,5 +70,5 @@ angular
         tags: ['geography', 'capitals']
       }
     ];
-  })
+  }])
 ;

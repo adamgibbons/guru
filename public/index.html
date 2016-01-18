@@ -1,14 +1,22 @@
 <html>
+
   <head>
-    <title></title>
+    <title>Guru</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-resource.js"></script>
-    <script src="./index.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="./stylesheets/styles.css">
   </head>
-  <link rel="stylesheet" type="text/css" href="./stylesheets/styles.css">
-
+  
   <body ng-app="guru">
     <div class="app" ng-view></div>
+
+    <script src="./index.js"></script>
+    <script src="./scripts/resources/deck.js"></script>
+    <script src="./scripts/controllers/completion.js"></script>
+    <script src="./scripts/controllers/home.js"></script>
+    <script src="./scripts/controllers/review.js"></script>
   </body>
+
 </html>
